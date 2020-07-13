@@ -8,5 +8,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ToysAndGames.Dal\ToysAndGames.Dal.csproj" />
+  </ItemGroup>
+
 
 </Project>
