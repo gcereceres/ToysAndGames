@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToysAndGames.Dal;
+using ToysAndGames.Dal.Models;
 using ToysAndGames.Web.ViewModels;
 
 namespace ToysAndGames.Web.Controllers
@@ -29,6 +30,14 @@ namespace ToysAndGames.Web.Controllers
         public ActionResult GetProductById(int productId)
         {
             return Ok(_productRepository.GetProductById(productId));
+        }
+
+        [HttpPost]
+        public ActionResult CreateProduct([FromBody] Product product)
+        {
+            _productRepository.CreateProduct(product);
+            _productRepository.Save();
+            return CreatedAtAction(nameof(GetProductById), new { productId = product.Id }, product);
         }
     }
 }
