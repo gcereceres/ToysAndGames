@@ -39,5 +39,13 @@ namespace ToysAndGames.Web.Controllers
             _productRepository.Save();
             return CreatedAtAction(nameof(GetProductById), new { productId = product.Id }, product);
         }
+
+        [HttpDelete("{productId}")]
+        public ActionResult DeleteProduct(int productId)
+        {
+            _productRepository.DeleteProduct(productId);
+
+            return NoContent();
+        }
     }
 }
