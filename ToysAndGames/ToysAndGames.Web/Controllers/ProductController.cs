@@ -47,5 +47,13 @@ namespace ToysAndGames.Web.Controllers
 
             return NoContent();
         }
+
+        [HttpPut]
+        public ActionResult UpdateProduct([FromBody] Product product)
+        {
+            _productRepository.UpdateProduct(product);
+
+            return Ok();
+        }
     }
 }
