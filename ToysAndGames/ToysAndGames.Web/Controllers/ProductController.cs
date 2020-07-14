@@ -24,5 +24,11 @@ namespace ToysAndGames.Web.Controllers
         {
             return Ok(_productRepository.GetProducts());
         }
+
+        [HttpGet("{productId}")]
+        public ActionResult GetProductById(int productId)
+        {
+            return Ok(_productRepository.GetProductById(productId));
+        }
     }
 }
