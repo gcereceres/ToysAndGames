@@ -30,6 +30,8 @@ namespace ToysAndGames.Web
         {
             services.AddControllers();
 
+            services.AddCors();
+
             services.AddDbContext<ToysAndGamesContext>(options => options.UseInMemoryDatabase(databaseName: "ToysAndGames"));
 
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -58,6 +60,12 @@ namespace ToysAndGames.Web
 
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder=> {
+                builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            });
 
             app.UseHttpsRedirection();
 
