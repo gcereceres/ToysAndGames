@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToysAndGames.Dal;
 using ToysAndGames.Dal.Models;
-using ToysAndGames.Web.ViewModels;
 
 namespace ToysAndGames.Web.Controllers
 {
