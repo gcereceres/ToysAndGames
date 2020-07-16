@@ -1,1 +1,27 @@
-<p>product-input works!</p>
+<h1 mat-dialog-title> Create Product</h1>
+<mat-dialog-content>
+    <div class="form-group">
+        <label for="productName">Name</label>
+        <input type="text" class="form-control" id="productName" placeholder="Enter Product Name">
+    </div>
+    <div class="form-group">
+        <label for="productPrice">Price</label>
+        <input type="text" class="form-control" id="productPrice" placeholder="0">
+    </div>
+    <div class="form-group">
+        <label for="productCompany">Company</label>
+        <input type="text" class="form-control" id="productCompany" placeholder="Enter Product Company">
+    </div>
+    <div class="form-group">
+        <label for="productMaxAge">Maximum Age</label>
+        <input type="number" class="form-control" id="productMaxAge">
+    </div>
+    <div class="form-group">
+        <label for="productDescription">Description</label>
+        <textarea class="form-control" id="productDescription" rows="3" cols="40" placeholder="Enter Product Description"></textarea>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onSaveClick()">Save</button>
+  </mat-dialog-actions>

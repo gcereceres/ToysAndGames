@@ -1,1 +1,22 @@
-<p>product-listing works!</p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Price</th>
+        <th scope="col">Company</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of productList">
+            <th scope="row">{{ product.id }}</th>
+            <td>{{ product.name }}</td>
+            <td>{{ product.age }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.company }}</td>
+            <td>Update Delete</td>
+        </tr>
+    </tbody>
+  </table>
