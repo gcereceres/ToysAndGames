@@ -1,3 +1,5 @@
+<button mat-raised-button color="primary" (click)="openDialog()">Add New +</button>
+
 <table class="table table-striped">
     <thead>
       <tr>
@@ -13,10 +15,13 @@
         <tr *ngFor="let product of productList">
             <th scope="row">{{ product.id }}</th>
             <td>{{ product.name }}</td>
-            <td>{{ product.age }}</td>
-            <td>{{ product.price }}</td>
+            <td>{{ product.ageRestriction }}</td>
+            <td>{{ product.price | currency }}</td>
             <td>{{ product.company }}</td>
-            <td>Update Delete</td>
+            <td>
+                <button class="btn btn-primary" (click)="onUpdateClick(product)">update</button>
+                <button class="btn btn-danger" (click)="onDelete(product.id, product.name)">delete</button>
+            </td>
         </tr>
     </tbody>
   </table>

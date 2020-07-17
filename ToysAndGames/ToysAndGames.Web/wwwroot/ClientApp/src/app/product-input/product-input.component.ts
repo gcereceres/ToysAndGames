@@ -17,9 +17,12 @@ export class ProductInputComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Product
   ) { }
 
-  product: Product;
+  product: Product = <Product>{};
 
   ngOnInit(): void {
+    if(this.data){
+      this.product = this.data;
+    }
   }
 
   onNoClick(): void {
@@ -27,7 +30,26 @@ export class ProductInputComponent implements OnInit {
   }
 
   onSaveClick(): void {
-    this.productService.createProduct(this.product);
+    console.log(this.product);
+    if(!this.product.id){
+      this.productService.createProduct(this.product).subscribe(
+        res => this.dialogRef.close(),
+        err => 
+        {
+          console.log(err);
+          this.dialogRef.close();
+        }
+      );
+    } else {
+      this.productService.updateProduct(this.product).subscribe(
+        res => this.dialogRef.close(),
+        err => 
+        {
+          console.log(err);
+          this.dialogRef.close();
+        }
+      );
+    }
   }
 
 }

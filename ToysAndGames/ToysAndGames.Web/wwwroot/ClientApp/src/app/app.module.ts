@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,16 +12,19 @@ import { ProductListingComponent } from './product-listing/product-listing.compo
 import { ProductInputComponent } from './product-input/product-input.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DeleteProductDialogComponent } from './delete-product-dialog/delete-product-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListingComponent,
     ProductInputComponent,
-    DashboardComponent
+    DashboardComponent,
+    DeleteProductDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
