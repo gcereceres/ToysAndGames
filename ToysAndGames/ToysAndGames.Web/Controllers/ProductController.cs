@@ -43,6 +43,7 @@ namespace ToysAndGames.Web.Controllers
         public ActionResult DeleteProduct(int productId)
         {
             _productRepository.DeleteProduct(productId);
+            _productRepository.Save();
 
             return NoContent();
         }
@@ -51,6 +52,7 @@ namespace ToysAndGames.Web.Controllers
         public ActionResult UpdateProduct([FromBody] Product product)
         {
             _productRepository.UpdateProduct(product);
+            _productRepository.Save();
 
             return Ok();
         }
