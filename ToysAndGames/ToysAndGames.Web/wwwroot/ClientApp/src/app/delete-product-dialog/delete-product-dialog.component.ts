@@ -23,8 +23,13 @@ export class DeleteProductDialogComponent implements OnInit {
 
   onOkClick(productId:number){
     this.productService.deleteProduct(productId).subscribe(
-      res => console.log(res),
-      err => console.log(err)
+      res => {
+        this.dialogRef.close();
+      },
+      err => {
+        console.error(err);
+        this.dialogRef.close();
+      }
     );
   }
 
