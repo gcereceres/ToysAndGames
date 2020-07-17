@@ -33,17 +33,52 @@ namespace ToysAndGames.Dal
         public void DeleteProduct(int productId)
         {
             Product product = _context.Products.FirstOrDefault(prod => prod.Id == productId);
-            _context.Products.Remove(product);
+
+            if (product == null)
+            {
+                Console.WriteLine($"Failed attempt to delete product with id: {productId}");
+            }
+            else
+            {
+                _context.Products.Remove(product);
+            }
         }
 
-        public void UpdateProduct(Product product)
+        public bool UpdateProduct(Product product)
         {
-            _context.Entry(product).State = EntityState.Modified;
+            bool canUpdate = false;
+
+            if (!_context.Products.Any(prod => prod.Id == product.Id))
+            {
+                Console.WriteLine($"Product with Id: {product.Id} does not exist");
+            }
+            else
+            {
+                _context.Entry(product).State = EntityState.Modified;
+                canUpdate = true;
+            }
+
+            
+
+            return canUpdate;
         }
 
-        public void Save()
+        public bool Save()
         {
-            _context.SaveChanges();
+            bool couldSave = false;
+
+            try
+            {
+                _context.SaveChanges();
+                couldSave = true;
+            }
+            catch (Exception ex)
+            {
+                // Log error on any available mechanism, in this case we use only console
+                Console.WriteLine($"Error trying to save changes on DB", ex);
+            }
+
+            return couldSave;
         }
 
         private bool disposed = false;

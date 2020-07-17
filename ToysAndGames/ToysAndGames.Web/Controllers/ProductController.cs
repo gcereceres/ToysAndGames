@@ -13,6 +13,7 @@ namespace ToysAndGames.Web.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private const string _serverErrorMsg = "There was an error on the server side if the problem persist call your administrator";
         private IProductRepository _productRepository;
         public ProductController(IProductRepository productRepository)
         {
@@ -35,15 +36,29 @@ namespace ToysAndGames.Web.Controllers
         public ActionResult CreateProduct([FromBody] Product product)
         {
             _productRepository.CreateProduct(product);
-            _productRepository.Save();
+
+            if (!_productRepository.Save())
+            {
+                return StatusCode(500, _serverErrorMsg);
+            }
+
             return CreatedAtAction(nameof(GetProductById), new { productId = product.Id }, product);
         }
 
         [HttpDelete("{productId}")]
         public ActionResult DeleteProduct(int productId)
         {
+            if (productId < 0)
+            {
+                return BadRequest();
+            }
+
             _productRepository.DeleteProduct(productId);
-            _productRepository.Save();
+
+            if (!_productRepository.Save())
+            {
+                return StatusCode(500, _serverErrorMsg);
+            }
 
             return NoContent();
         }
@@ -51,10 +66,19 @@ namespace ToysAndGames.Web.Controllers
         [HttpPut]
         public ActionResult UpdateProduct([FromBody] Product product)
         {
-            _productRepository.UpdateProduct(product);
-            _productRepository.Save();
+            if (!_productRepository.UpdateProduct(product))
+            {
+                return BadRequest();
+            }
+            else
+            {
+                if (!_productRepository.Save())
+                {
+                    return StatusCode(500, _serverErrorMsg);
+                }
 
-            return Ok();
+                return Ok();
+            }
         }
     }
 }
