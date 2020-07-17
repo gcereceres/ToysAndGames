@@ -30,29 +30,6 @@ export class ProductInputComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSaveClick(): void {
-    console.log(this.product);
-    if(!this.product.id){
-      this.productService.createProduct(this.product).subscribe(
-        res => this.dialogRef.close(),
-        err => 
-        {
-          console.log(err);
-          this.dialogRef.close();
-        }
-      );
-    } else {
-      this.productService.updateProduct(this.product).subscribe(
-        res => this.dialogRef.close(),
-        err => 
-        {
-          console.log(err);
-          this.dialogRef.close();
-        }
-      );
-    }
-  }
-
   onAddProduct(form: NgForm){
     if(!this.product.id){
       this.productService.createProduct(this.product).subscribe(
