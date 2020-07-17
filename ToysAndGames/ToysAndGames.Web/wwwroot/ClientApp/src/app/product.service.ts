@@ -17,7 +17,6 @@ export class ProductService {
   }
 
   createProduct(product:Product){
-    console.log('Service');
     return this.http.post(this.toysAndGamesUrl, product);
   }
 
