@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 
 import { ProductService } from '../product.service';
 import { Product } from '../product';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product-input',
@@ -31,6 +32,28 @@ export class ProductInputComponent implements OnInit {
 
   onSaveClick(): void {
     console.log(this.product);
+    if(!this.product.id){
+      this.productService.createProduct(this.product).subscribe(
+        res => this.dialogRef.close(),
+        err => 
+        {
+          console.log(err);
+          this.dialogRef.close();
+        }
+      );
+    } else {
+      this.productService.updateProduct(this.product).subscribe(
+        res => this.dialogRef.close(),
+        err => 
+        {
+          console.log(err);
+          this.dialogRef.close();
+        }
+      );
+    }
+  }
+
+  onAddProduct(form: NgForm){
     if(!this.product.id){
       this.productService.createProduct(this.product).subscribe(
         res => this.dialogRef.close(),
