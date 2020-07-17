@@ -17,6 +17,15 @@ export class ProductService {
   }
 
   createProduct(product:Product){
+    console.log('Service');
     return this.http.post(this.toysAndGamesUrl, product);
+  }
+
+  deleteProduct(productId:number){
+    return this.http.delete(`${this.toysAndGamesUrl}/${productId}`);
+  }
+
+  updateProduct(product: Product){
+    return this.http.put(this.toysAndGamesUrl, product);
   }
 }
