@@ -13,7 +13,12 @@ namespace ToysAndGames.Dal
 
         }
 
-        public DbSet<Product> Products { get; set; }
+        public ToysAndGamesContext()
+        {
+
+        }
+
+        public  virtual DbSet<Product> Products { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
