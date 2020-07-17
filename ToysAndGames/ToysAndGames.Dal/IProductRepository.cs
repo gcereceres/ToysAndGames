@@ -17,7 +17,7 @@ namespace ToysAndGames.Dal
 
         bool UpdateProduct(Product product);
 
-        void Save();
+        bool Save();
 
     }
 }
