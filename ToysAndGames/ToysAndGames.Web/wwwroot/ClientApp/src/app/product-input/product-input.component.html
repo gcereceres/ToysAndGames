@@ -1,0 +1,105 @@
+<h1 mat-dialog-title>Product Detail</h1>
+<mat-dialog-content>
+    <div class="form-group">
+        <label for="productName">Name</label>
+        <input required type="text" 
+                class="form-control" 
+                id="productName" 
+                placeholder="Enter Product Name" 
+                [(ngModel)]="product.name"
+                maxlength="50"
+                name="name"
+                #name="ngModel">
+
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+        
+            <div *ngIf="name.errors.required">
+            Name is required.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="productPrice">Price</label>
+        <input required type="number" 
+                        class="form-control" 
+                        id="productPrice" 
+                        placeholder="0" 
+                        [(ngModel)]="product.price"
+                        name="price"
+                        #price="ngModel"
+                        min="1"
+                        max="1000">
+
+        <div *ngIf="price.invalid && (price.dirty || price.touched)"
+            class="alert alert-danger">
+        
+            <div *ngIf="price.errors.required">
+            Price is required.
+            </div>
+
+            <div *ngIf="price.errors.min || price.errors.max">
+                value must be between 1 and 1000.
+            </div>
+        </div>
+        
+    </div>
+    <div class="form-group">
+        <label for="productCompany">Company</label>
+        <input required type="text" 
+                        class="form-control" 
+                        id="productCompany" 
+                        placeholder="Enter Product Company" 
+                        [(ngModel)]="product.company"
+                        maxlength="50"
+                        name="company"
+                        #company="ngModel">
+
+        <div *ngIf="company.invalid && (company.dirty || company.touched)"
+            class="alert alert-danger">
+        
+            <div *ngIf="company.errors.required">
+            Company is required.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="productMaxAge">Maximum Age</label>
+        <input type="number" 
+                class="form-control" 
+                id="productMaxAge" 
+                [(ngModel)]="product.ageRestriction"
+                min="0"
+                max="100"
+                name="maxAge"
+                #maxAge="ngModel">
+
+        <div *ngIf="maxAge.invalid && (maxAge.dirty || maxAge.touched)"
+            class="alert alert-danger">
+        
+            <div *ngIf="maxAge.errors.required">
+            Must be between 0 and 100
+        </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label for="productDescription">Description</label>
+        <textarea class="form-control" 
+                    id="productDescription" 
+                    rows="3" 
+                    cols="40" 
+                    placeholder="Enter Product Description" 
+                    [(ngModel)]="product.description"
+                    maxlength="100"
+                    name="description"
+                    #description="ngModel"></textarea>
+
+        <div *ngIf="description.invalid && (description.dirty || description.touched)"
+            class="alert alert-danger">
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button cdkFocusInitial (click)="onSaveClick()">Save</button>
+</mat-dialog-actions>

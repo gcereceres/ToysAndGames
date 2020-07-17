@@ -1,0 +1,8 @@
+<h1 mat-dialog-title> Delete Product</h1>
+<mat-dialog-content>
+    <span>Are you sure you want to delete <strong>{{data.name}}</strong>?</span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onOkClick(data.id)">Ok</button>
+</mat-dialog-actions>
