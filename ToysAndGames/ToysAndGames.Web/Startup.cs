@@ -60,8 +60,13 @@ namespace ToysAndGames.Web
 
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
-            app.UseCors(builder=> {
+            app.UseCors(builder =>
+            {
                 builder.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod();
