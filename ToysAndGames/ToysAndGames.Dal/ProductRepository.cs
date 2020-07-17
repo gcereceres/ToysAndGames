@@ -33,12 +33,34 @@ namespace ToysAndGames.Dal
         public void DeleteProduct(int productId)
         {
             Product product = _context.Products.FirstOrDefault(prod => prod.Id == productId);
-            _context.Products.Remove(product);
+
+            if(product == null)
+            {
+                Console.WriteLine($"Failed attempt to delete product with id: {productId}");
+            } else
+            {
+                _context.Products.Remove(product);
+            }
         }
 
-        public void UpdateProduct(Product product)
+        public bool UpdateProduct(Product product)
         {
+            bool canUpdate = false;
+            Product esistingProduct = _context.Products.FirstOrDefault(prod => prod.Id == product.Id);
+
+            if (esistingProduct == null)
+            {
+                Console.WriteLine($"Product with Id: {product.Id} does not exist");
+            }
+            else
+            {
+                _context.Products.Remove(product);
+                canUpdate = true;
+            }
+
             _context.Entry(product).State = EntityState.Modified;
+
+            return canUpdate;
         }
 
         public void Save()
